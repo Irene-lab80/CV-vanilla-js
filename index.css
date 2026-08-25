@@ -1,0 +1,18 @@
+body {
+  background: #fefefe;
+  color: #454b73;
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.filter-btn {
+  background: #f0f0f0;
+  color: #454b73;
+  border: 1px solid #ccc;
+}
+
+.filter-btn_active {
+  background: #454b73;
+  color: #fefefe;
+}
