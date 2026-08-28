@@ -1,4 +1,5 @@
 const body = document.body;
+
 const title = document.querySelector("h1");
 const searchInput = document.querySelector(
   'input[placeholder="Поиск по навыкам"]',
@@ -6,15 +7,39 @@ const searchInput = document.querySelector(
 const skills = document.querySelector("#skills");
 const nav = document.querySelector("#skills-nav");
 const skillItems = Array.from(skills.children);
-const filterBtns = Array.from(nav.children);
+const filterBtns = Array.from(nav.querySelectorAll(".filter-btn"));
 let searchValue = "";
 let selectedFilter = "all";
+
+const themeButton = document.querySelector("#theme");
+
+if (themeButton) {
+  themeButton.addEventListener("click", () => {
+    let theme = document.documentElement.dataset.theme || "dark";
+
+    console.log("themeButton clicked", document.documentElement.dataset.theme);
+    if (theme === "dark") {
+      theme = "light";
+    } else {
+      theme = "dark";
+    }
+    document.documentElement.dataset.theme = theme;
+  });
+}
+
 const emptyMessage = document.createElement("li");
 emptyMessage.textContent = "Ничего не найдено";
 emptyMessage.hidden = true;
 skills.appendChild(emptyMessage);
 
 const renderSkills = () => {
+  filterBtns.forEach((btn) => {
+    btn.classList.toggle(
+      "filter-btn_active",
+      btn.dataset.filter === selectedFilter,
+    );
+  });
+
   skillItems.forEach((skill) => {
     const skillText = skill.textContent.trim().toLowerCase();
     const matchesSearch = skillText.includes(searchValue);
@@ -24,17 +49,15 @@ const renderSkills = () => {
     skill.hidden = !matchesSearch || !matchesFilter;
   });
 
-  emptyMessage.hidden = skillItems.some((skill) => !skill.hidden);
+  const noSkillsFound = skillItems.every((skill) => skill.hidden);
+
+  emptyMessage.hidden = !noSkillsFound;
 };
 
 nav.addEventListener("click", (e) => {
   if (e.target.tagName !== "BUTTON") return;
 
   selectedFilter = e.target.dataset.filter;
-  filterBtns.forEach((btn) => {
-    btn.classList.remove("filter-btn_active");
-  });
-  e.target.classList.add("filter-btn_active");
   renderSkills();
 });
 
@@ -44,10 +67,3 @@ searchInput.addEventListener("input", (e) => {
 });
 
 renderSkills();
-
-console.log("body", body);
-console.log("title", title);
-console.log("searchInput", searchInput);
-console.log("skills", skills);
-console.log("nav", nav);
-console.log("skillItems", skillItems);

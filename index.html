@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>CV Frontend Developer</title>
+    <link rel="stylesheet" href="./normalize.css" />
+
     <link rel="stylesheet" href="./index.css" />
-    <script src="./script.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,35 +15,62 @@
       href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet"
     />
+    <script src="./script.js" defer></script>
   </head>
   <body>
-    <header>
-      <img src="" alt="" />
+    <header class="container-large hero">
+      <div class="avatar-wrapper">
+        <img class="avatar-image" src="./avatar.jpg" alt="avatar" />
+      </div>
+
       <nav>
-        <ul>
-          <li><a href="">страница 1</a></li>
-          <li><a href="">страница 2</a></li>
-        </ul>
+        <section>
+          <h1>Ирина Жюркевич</h1>
+          <span class="subtitle">Фронтенд разработчик</span>
+
+          <ul>
+            <li>
+              <a href="mailto:izhyurkevich@gmail.com">izhyurkevich@gmail.com</a>
+            </li>
+            <li>
+              <a href="https://github.com/Irene-lab80" target="_blank"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a href="https://t.me/undeadsea" target="_blank">Telegram</a>
+            </li>
+          </ul>
+        </section>
       </nav>
     </header>
-    <main>
-      <h1>John Smith</h1>
-      <p>TEXT</p>
+    <main class="main container">
       <section>
-        <h2>IT Project Manager</h2>
+        <h2 class="title">PROFILE</h2>
+
         <p>
-          IT Professional with over 10 years of ecperience specializing in IT
-          department management for international logistics companies. I can
-          implament effective IT strategies at local and global levels. My
-          greatest strangth is business awareness, which enables me to
-          permanently streamline infrastructure and applications.
+          Фронтенд разработчик, увлеченный созданием интерактивных и отзывчивых
+          веб-приложений. Моя цель - создавать интуитивно понятные
+          пользовательские интерфейсы, которые обеспечивают отличный опыт для
+          пользователей. Я стремлюсь к постоянному совершенствованию своих
+          навыков и изучению новых технологий в области веб-разработки.
         </p>
       </section>
+
       <section>
-        <input type="text" placeholder="Поиск по навыкам" />
-        <h2>Skills</h2>
+        <h2 class="title">навыки</h2>
+        <input
+          type="search"
+          name="search"
+          placeholder="Поиск по навыкам"
+          class="search-input"
+        />
+
         <nav id="skills-nav">
-          <button class="filter-btn" data-filter="all">Все</button> |
+          <button class="filter-btn filter-btn_active" data-filter="all">
+            Все
+          </button>
+          |
           <button class="filter-btn" data-filter="frontend">Frontend</button> |
           <button class="filter-btn" data-filter="backend">Backend</button> |
           <button class="filter-btn" data-filter="tools">Tools</button>
@@ -51,22 +80,69 @@
           <li data-filter="frontend" class="skill-item">CSS</li>
           <li data-filter="frontend" class="skill-item">JavaScript</li>
           <li data-filter="frontend" class="skill-item">TypeScript</li>
-
           <li data-filter="frontend" class="skill-item">React</li>
           <li data-filter="backend" class="skill-item">Node.js</li>
           <li data-filter="frontend" class="skill-item">Webpack</li>
           <li data-filter="tools" class="skill-item">Git</li>
         </ul>
       </section>
+
+      <section>
+        <h2 class="title">образование</h2>
+        <div class="flex">
+          <h3>Бакалавр экономики</h3>
+          <span class="decoraction-horizontal years">2015-2020</span>
+        </div>
+      </section>
+      <section>
+        <h2 class="title">Повышение квалификации, курсы</h2>
+        <div class="flex">
+          <h3>Python</h3>
+          <span class="decoraction-horizontal years">2020</span>
+        </div>
+        <div class="flex">
+          <h3>JS / FRONT-END</h3>
+          <span class="decoraction-horizontal years">2021</span>
+        </div>
+        <div class="flex">
+          <h3>Web-разработка</h3>
+          <span class="decoraction-horizontal years">2022</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="title">ОПЫТ РАБОТЫ</h2>
+        <div class="flex">
+          <h3>ЛАД, ООО</h3>
+          <span class="decoraction-horizontal years">2022-2023</span>
+        </div>
+        <p>
+          Программист стажер. Разработка и поддержка веб-приложений, работа с
+          HTML, CSS, JavaScript, React. Участие в проектировании интерфейсов и
+          оптимизации пользовательского опыта.
+        </p>
+      </section>
+      <section>
+        <h3 class="title">проекты</h3>
+        <ul>
+          <li>
+            <a href="https://irene-lab80.github.io/tic-tac-toe/" target="_blank"
+              >Tic Tac Toe Game</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://github.com/Irene-lab80/neoflex-project"
+              target="_blank"
+              >Neoflex Project</a
+            >
+          </li>
+        </ul>
+      </section>
     </main>
-    <aside>
-      <h3>работы</h3>
-      <ul>
-        <li><a href="">link github 1</a></li>
-        <li><a href="">link github 2</a></li>
-      </ul>
-    </aside>
-    <footer>
+
+    <footer class="container">
       <p>© 2026 <a href="https://github.com/Irene-lab80">github</a></p>
     </footer>
   </body>
