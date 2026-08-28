@@ -1,44 +1,58 @@
-const body = document.body;
-
-const title = document.querySelector("h1");
-const searchInput = document.querySelector(
-  'input[placeholder="Поиск по навыкам"]',
-);
+const searchInput = document.querySelector("#search-input");
 const skills = document.querySelector("#skills");
 const nav = document.querySelector("#skills-nav");
-const skillItems = Array.from(skills.children);
-const filterBtns = Array.from(nav.querySelectorAll(".filter-btn"));
+const themeButton = document.querySelector("#theme");
+const themeButtonIcon = document.querySelector(".theme-btn-icon");
+
 let searchValue = "";
 let selectedFilter = "all";
-
-const themeButton = document.querySelector("#theme");
-
-if (themeButton) {
-  themeButton.addEventListener("click", () => {
-    let theme = document.documentElement.dataset.theme || "dark";
-
-    console.log("themeButton clicked", document.documentElement.dataset.theme);
-    if (theme === "dark") {
-      theme = "light";
-    } else {
-      theme = "dark";
-    }
-    document.documentElement.dataset.theme = theme;
-  });
-}
 
 const emptyMessage = document.createElement("li");
 emptyMessage.textContent = "Ничего не найдено";
 emptyMessage.hidden = true;
 skills.appendChild(emptyMessage);
 
+const toggleButtonicon = (theme) => {
+  themeButtonIcon.setAttribute(
+    "fill",
+    theme === "light" ? "#454b73  " : "#fefefe",
+  );
+};
+const initTheme = () => {
+  const themeFromLocalStorage = localStorage.getItem("theme");
+  if (themeFromLocalStorage) {
+    document.documentElement.dataset.theme = themeFromLocalStorage;
+    toggleButtonicon(themeFromLocalStorage);
+  }
+};
+initTheme();
+
+const toggleTheme = () => {
+  if (document.documentElement.dataset.theme === "light") {
+    document.documentElement.dataset.theme = "dark";
+  } else {
+    document.documentElement.dataset.theme = "light";
+  }
+
+  localStorage.setItem("theme", document.documentElement.dataset.theme);
+  toggleButtonicon(document.documentElement.dataset.theme);
+};
+
+themeButton.addEventListener("click", () => {
+  toggleTheme();
+});
+
 const renderSkills = () => {
+  const filterBtns = Array.from(nav.querySelectorAll(".filter-btn"));
+
   filterBtns.forEach((btn) => {
     btn.classList.toggle(
       "filter-btn_active",
       btn.dataset.filter === selectedFilter,
     );
   });
+
+  const skillItems = Array.from(skills.children);
 
   skillItems.forEach((skill) => {
     const skillText = skill.textContent.trim().toLowerCase();
@@ -62,7 +76,8 @@ nav.addEventListener("click", (e) => {
 });
 
 searchInput.addEventListener("input", (e) => {
-  searchValue = e.target.value.trim().toLowerCase();
+  const value = e.target.value;
+  searchValue = value.trim().toLowerCase();
   renderSkills();
 });
 
