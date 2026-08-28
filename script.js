@@ -25,6 +25,7 @@ const initTheme = () => {
     toggleButtonicon(themeFromLocalStorage);
   }
 };
+
 initTheme();
 
 const toggleTheme = () => {
